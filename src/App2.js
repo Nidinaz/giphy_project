@@ -38,10 +38,6 @@ const fillteredUsers = servicesJson.subscriptions.filter((userSub) => {
 console.log(fillteredUsers)
 
   const servicesComps = fillteredUsers.map((userSub) => {
-    if (userSub.services.length === 0) {
-        return null
-    }
-
     return <Sub username={userSub.user.username}></Sub>;
   });
   return <div>{servicesComps}</div>;
