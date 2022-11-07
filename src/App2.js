@@ -14,13 +14,30 @@ const servicesJson = {
         user_id: "2",
         username: "Jana",
       },
-      services: [],
+      services: ["HHHHH"],
     },
+    {
+        user: {
+          user_id: "3",
+          username: "Mohammad3",
+        },
+        services: ["Netflix", "DisneyPlus", "HBO Max"],
+      }
   ],
 };
 
 const App2 = () => {
-  const servicesComps = servicesJson.subscriptions.map((userSub) => {
+const fillteredUsers = servicesJson.subscriptions.filter((userSub) => {
+    if (userSub.services.length > 2) {
+        return false
+    } else {
+        return true
+    }
+})
+
+console.log(fillteredUsers)
+
+  const servicesComps = fillteredUsers.map((userSub) => {
     if (userSub.services.length === 0) {
         return null
     }
