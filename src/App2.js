@@ -17,29 +17,27 @@ const servicesJson = {
       services: ["HHHHH"],
     },
     {
-        user: {
-          user_id: "3",
-          username: "Mohammad3",
-        },
-        services: ["Netflix", "DisneyPlus", "HBO Max"],
-      }
+      user: {
+        user_id: "3",
+        username: "Mohammad3",
+      },
+      services: ["Netflix", "DisneyPlus", "HBO Max"],
+    },
   ],
 };
 
 const App2 = () => {
-const fillteredUsers = servicesJson.subscriptions.filter((userSub) => {
-    if (userSub.services.length > 2) {
-        return false
-    } else {
-        return true
-    }
-})
-
-console.log(fillteredUsers)
-
-  const servicesComps = fillteredUsers.map((userSub) => {
-    return <Sub username={userSub.user.username}></Sub>;
-  });
+  const servicesComps = servicesJson.subscriptions
+    .filter((userSub) => {
+      if (userSub.services.length < 2) {
+        return false;
+      } else {
+        return true;
+      }
+    })
+    .map((userSub) => {
+      return <Sub username={userSub.user.username}></Sub>;
+    });
   return <div>{servicesComps}</div>;
 };
 
