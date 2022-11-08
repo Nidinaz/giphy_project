@@ -29,11 +29,12 @@ const servicesJson = {
 const App2 = () => {
   const servicesComps = servicesJson.subscriptions
     .filter((userSub) => {
-      if (userSub.services.length < 2) {
-        return false;
-      } else {
-        return true;
-      }
+      return userSub.services.length >= 2
+      // if (userSub.services.length < 2) {
+      //   return false;
+      // } else {
+      //   return true;
+      // }
     })
     .map((userSub) => {
       return <Sub username={userSub.user.username}></Sub>;

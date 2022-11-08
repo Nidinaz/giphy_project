@@ -2,34 +2,38 @@ import "./App.css";
 
 const giphyJson = require("./giphy.json");
 
+//rewrite the current function using .filter and redundancy variable
+//filter voor map
+//with the code below the giphys are just shown if there is a user
+//no falsy game-play; better: use the concrete definition
+
 function App() {
-  const gj = giphyJson.data.map((giphy) => {
-    return <Giphy giphy={giphy}></Giphy>;
-  });
+  const gj = giphyJson.data
+    .filter((giphy) => {
+      // return giphy.user !== undefined;
+      //als een user niet aanwezig is, wordt false gereturned
+      if (giphy.user === undefined) {
+        return false;
+      } else {
+        return true;
+      }
+
+    })
+
+    .map((giphy) => {
+      return <Giphy giphy={giphy}></Giphy>;
+    });
   return <div>{gj}</div>;
 }
 
-//making compnent using prop CL
-
-
 //extra variable 'let user' om met een if conditie te checken of user bestaat
 const Giphy = (props) => {
-  let user
-  if(props.giphy.user){
-    user = (
-      <div>
-        <img
-          src={props.giphy.user.avatar_url}
-          alt="avatarpicture"
-        />
-        <span>{props.giphy.user.display_name}</span>
-      </div>
-    )
-  }
-//terniary embedded in code to check if user exists 
   return (
     <div>
-      {user}
+      <div>
+        <img src={props.giphy.user.avatar_url} alt="avatarpicture" />
+        <span>{props.giphy.user.display_name}</span>
+      </div>
       {/* <div>
         <img
           src={props.giphy.user ? props.giphy.user.avatar_url : ""}
