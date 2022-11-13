@@ -19,7 +19,6 @@ function App() {
       }
 
     })
-
     .map((giphy) => {
       return <Giphy giphy={giphy}></Giphy>;
     });
